@@ -9,9 +9,13 @@ func _input(event):
 		# modify accumulated mouse rotation
 		rot_x += event.relative.x * -0.01
 		rot_y += event.relative.y * 0.01
+		
+		var relative_up = transform.basis.y;
+		print(relative_up);
+		
 		transform.basis = Basis() # reset rotation
-		rotate_object_local(Vector3(0, 1, 0), rot_x) # first rotate in Y
-		rotate_object_local(Vector3(1, 0, 0), rot_y) # then rotate in X
+		rotate(relative_up, rot_x) # first rotate in Y
+		rotate(Vector3(1, 0, 0), rot_y) # then rotate in X
 
 func _process(delta):
 	var input_thrust = Input.get_axis("ui_down", "ui_up");
