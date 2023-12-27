@@ -3,17 +3,21 @@ extends CharacterBody3D
 @export var speed = 30.0;
 
 func _process(delta):
+	
+	
+	velocity = _get_velocity();
+	move_and_slide();
+	
+func _get_velocity():
 	var wasd = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up");
 	
 	var forward = global_transform.basis.z;
 	var sideway = Vector3(-forward.z, 0, forward.x);
 	
-	velocity = Vector3.ZERO;
-	velocity += forward * wasd.y;
-	velocity += sideway * wasd.x;
-	velocity = velocity.normalized() * speed;
-	
-	move_and_slide();
+	var direction = Vector3.ZERO;
+	direction += forward * wasd.y;
+	direction += sideway * wasd.x;
+	return direction.normalized() * speed;
 	
 	
 # Get a vector for the mouse relative to the center of the screen
