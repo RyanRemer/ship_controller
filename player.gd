@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 30.0;
+@export var speed = 15.0;
 @export var rotation_speed = 2 * PI;
 
 @onready var ship_body: Node3D = $ShipBody;
@@ -20,7 +20,7 @@ func _rotate_ship_body():
 	var thrust_amount = wasd.y;
 	var basis = Basis.IDENTITY;
 	basis = basis.rotated(Vector3.RIGHT, relative_mouse.y * PI / 2.0 * thrust_amount);
-	basis = basis.rotated(Vector3.UP, -relative_mouse.x * PI / 2.0 * thrust_amount);
+	basis = basis.rotated(Vector3.FORWARD, -relative_mouse.x * PI / 2.0 * thrust_amount);
 	basis = basis.orthonormalized();
 	
 	basis = basis.scaled(ship_body.transform.basis.get_scale());
@@ -31,7 +31,7 @@ func _rotate_player(delta):
 	
 	var wasd = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up");
 	var thrust_amount = wasd.y;
-	player_rotation.x += fmod(relative_mouse.x * rotation_speed * delta * thrust_amount, 2 * PI);
+	player_rotation.x += fmod(-relative_mouse.x * rotation_speed * delta * thrust_amount, 2 * PI);
 	player_rotation.y += fmod(relative_mouse.y * rotation_speed * delta * thrust_amount, 2 * PI);
 	
 	var basis = Basis.IDENTITY;
