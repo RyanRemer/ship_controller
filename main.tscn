@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://60fcav7t7c4v"]
+[gd_scene load_steps=5 format=3 uid="uid://60fcav7t7c4v"]
 
-[ext_resource type="ArrayMesh" uid="uid://xmaw2dkcjt8o" path="res://assets/ship3_mesh.tres" id="1_evc05"]
+[ext_resource type="Script" path="res://player.gd" id="1_kil06"]
+[ext_resource type="ArrayMesh" uid="uid://xmaw2dkcjt8o" path="res://assets/ship3_mesh.tres" id="2_885sf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v33p8"]
 radius = 1.5
@@ -10,14 +11,18 @@ radius = 1.5
 [node name="Main" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_kil06")
 
 [node name="ShipBody" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
-mesh = ExtResource("1_evc05")
+mesh = ExtResource("2_885sf")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("SphereShape3D_v33p8")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, 0, 0.965926, -0.258819, 8.74228e-08, -0.258819, -0.965926, 0, 1, -6)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 19.715)
