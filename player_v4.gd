@@ -15,8 +15,9 @@ func _process(delta):
 	
 	var ship_basis = Basis.IDENTITY;
 	var scale = ship_body.scale;
+	ship_basis = ship_basis.rotated(Vector3.UP, -relative_mouse.x * PI / 2.0);
+	ship_basis = ship_basis.rotated(Vector3.RIGHT, relative_mouse.y * PI);
 	ship_basis = ship_basis.rotated(ship_basis.z, relative_mouse.x * PI);
-	ship_basis = ship_basis.rotated(ship_basis.x, relative_mouse.y * PI);
 	ship_basis = ship_basis.orthonormalized();
 	ship_body.basis = ship_basis;
 	ship_body.scale = scale;

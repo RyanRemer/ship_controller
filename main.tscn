@@ -22,21 +22,11 @@ skeleton = NodePath("../..")
 shape = SubResource("SphereShape3D_v33p8")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, 0, 0.965926, -0.258819, 8.74228e-08, -0.258819, -0.965926, 0, 1, -6)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, -6)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 19.715)
 mesh = SubResource("BoxMesh_c3ml8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CenterContainer"]
-custom_minimum_size = Vector2(8, 8)
-layout_mode = 2
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.936623, 0.297656, -0.184763, 0, 0.527386, 0.849626, 0.350338, -0.795779, 0.493962, 0, 0, 0)
