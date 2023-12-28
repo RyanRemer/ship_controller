@@ -23,7 +23,7 @@ func _process(delta):
 	ship_body.scale = scale;
 	
 	# Move Player
-	var forward = transform.basis.z;
+	var forward = ship_body.global_transform.basis.z.normalized();
 	velocity = forward * Input.get_axis("ui_down", "ui_up") * 15.0;
 	move_and_slide();
 
