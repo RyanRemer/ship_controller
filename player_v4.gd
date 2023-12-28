@@ -1,15 +1,30 @@
 extends CharacterBody3D
 
 @export var rotation_speed = 1.0;
+@onready var ship_body : Node3D = $ShipBody;
+
 
 func _process(delta):
-	var basis = transform.basis;
-	
+	# Rotate Player
 	var relative_mouse = _get_relative_mouse();
-	
-	basis = basis.rotated(basis.y, PI * delta);
-	
+	var basis = transform.basis;
+	basis = basis.rotated(basis.x, relative_mouse.y * PI * delta);
+	basis = basis.rotated(basis.y, -relative_mouse.x * PI * delta);
+	basis = basis.orthonormalized();
 	transform.basis = basis;
+	
+	var ship_basis = Basis.IDENTITY;
+	var scale = ship_body.scale;
+	ship_basis = ship_basis.rotated(ship_basis.z, relative_mouse.x * PI);
+	ship_basis = ship_basis.rotated(ship_basis.x, relative_mouse.y * PI);
+	ship_basis = ship_basis.orthonormalized();
+	ship_body.basis = ship_basis;
+	ship_body.scale = scale;
+	
+	# Move Player
+	var forward = transform.basis.z;
+	velocity = forward * Input.get_axis("ui_down", "ui_up") * 15.0;
+	move_and_slide();
 
 # Get a vector for the mouse relative to the center of the screen
 # Range(-1, 1) negative is left/top positive is right/bottom
