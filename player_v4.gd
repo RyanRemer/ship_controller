@@ -1,8 +1,12 @@
 extends CharacterBody3D
 
-@export var rotation_speed = 1.0;
-@onready var ship_body : Node3D = $ShipBody;
+@export var max_speed = 20.0;
+@export var acceleration = 20.0;
 
+@onready var ship_body : Node3D = $ShipBody;
+const BACKWARD_RATIO = 0.5;
+
+var speed = 0;
 
 func _process(delta):
 	# Rotate Player
@@ -24,7 +28,14 @@ func _process(delta):
 	
 	# Move Player
 	var forward = ship_body.global_transform.basis.z.normalized();
-	velocity = forward * Input.get_axis("ui_down", "ui_up") * 15.0;
+	if Input.is_action_pressed("ui_up"):
+		speed = min(speed + acceleration * delta, max_speed);
+	elif Input.is_action_pressed("ui_down"):
+		speed = max(speed - acceleration * delta, -max_speed * BACKWARD_RATIO);
+	else:
+		speed -= speed * delta;
+	
+	velocity = forward * speed;
 	move_and_slide();
 
 # Get a vector for the mouse relative to the center of the screen
