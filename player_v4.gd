@@ -7,6 +7,7 @@ extends CharacterBody3D
 const BACKWARD_RATIO = 0.5;
 
 var speed = 0;
+var drift_direction = Vector3.FORWARD;
 
 func _process(delta):
 	# Rotate Player
@@ -26,7 +27,22 @@ func _process(delta):
 	ship_body.basis = ship_basis;
 	ship_body.scale = scale;
 	
-	# Move Player
+	if Input.is_action_just_pressed("ui_drift"):
+		drift_direction = transform.basis.z;
+	
+	if Input.is_action_pressed("ui_drift"):
+		_drifting_movement(delta);
+	else:
+		_normal_movement(delta);
+	
+func _drifting_movement(delta):
+	var forward = ship_body.global_transform.basis.z.normalized();
+	drift_direction = drift_direction.lerp(forward, 0.5 * delta);
+	
+	velocity = drift_direction.normalized() * speed;
+	move_and_slide();
+	
+func _normal_movement(delta):
 	var forward = ship_body.global_transform.basis.z.normalized();
 	if Input.is_action_pressed("ui_up"):
 		speed = min(speed + acceleration * delta, max_speed);
