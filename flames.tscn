@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdv66hah1ppsj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1wt1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc2wn"]
+next_pass = SubResource("StandardMaterial3D_i1wt1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_tulpy"]
+
+[node name="Flames" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_fc2wn")
+mesh = SubResource("SphereMesh_tulpy")

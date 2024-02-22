@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://60fcav7t7c4v"]
 
-[ext_resource type="Script" path="res://player_v4.gd" id="1_vu44t"]
-[ext_resource type="ArrayMesh" uid="uid://xmaw2dkcjt8o" path="res://assets/ship3_mesh.tres" id="2_885sf"]
+[ext_resource type="Script" path="res://player_v5.gd" id="1_4f1qs"]
+[ext_resource type="ArrayMesh" uid="uid://bpici6hogdnhh" path="res://assets/ship3.obj" id="2_o4281"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v33p8"]
 radius = 1.5
@@ -11,11 +11,11 @@ radius = 1.5
 [node name="Main" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="."]
-script = ExtResource("1_vu44t")
+script = ExtResource("1_4f1qs")
 
 [node name="ShipBody" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
-mesh = ExtResource("2_885sf")
+mesh = ExtResource("2_o4281")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
