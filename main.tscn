@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://60fcav7t7c4v"]
+[gd_scene load_steps=6 format=3 uid="uid://60fcav7t7c4v"]
 
 [ext_resource type="Script" path="res://player_v5.gd" id="1_4f1qs"]
 [ext_resource type="ArrayMesh" uid="uid://bpici6hogdnhh" path="res://assets/ship3.obj" id="2_o4281"]
+[ext_resource type="PackedScene" uid="uid://bdv66hah1ppsj" path="res://flames.tscn" id="3_wcbkw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v33p8"]
 radius = 1.5
@@ -17,6 +18,12 @@ script = ExtResource("1_4f1qs")
 transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
 mesh = ExtResource("2_o4281")
 skeleton = NodePath("../..")
+
+[node name="FlamesRight" parent="Player/ShipBody" instance=ExtResource("3_wcbkw")]
+transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, -1.5294, 0.828587, -9.40028)
+
+[node name="FlamesLeft" parent="Player/ShipBody" instance=ExtResource("3_wcbkw")]
+transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, 1.529, 0.829, -9.4)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("SphereShape3D_v33p8")

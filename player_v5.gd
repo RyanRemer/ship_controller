@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var rotation_speed = PI;
 
 @onready var ship_body : Node3D = $ShipBody;
+@onready var flames_left : Flames = $ShipBody/FlamesLeft;
+@onready var flames_right : Flames = $ShipBody/FlamesRight;
 const BACKWARD_RATIO = 0.5;
 
 var speed = 0;
@@ -30,6 +32,18 @@ func _process(delta):
 	ship_body.scale = scale;
 	
 	_move_forward(delta);
+	
+	# Flames
+	if speed >= 0:
+		flames_left.flame_color = Color.DEEP_SKY_BLUE;
+		flames_right.flame_color = Color.DEEP_SKY_BLUE;
+		flames_left.speed_ratio = speed / max_speed;
+		flames_right.speed_ratio = speed / max_speed;
+	else:
+		flames_left.flame_color = Color.HOT_PINK;
+		flames_right.flame_color = Color.HOT_PINK;
+		flames_left.speed_ratio = speed / (-max_speed * BACKWARD_RATIO);
+		flames_right.speed_ratio = speed / (-max_speed * BACKWARD_RATIO);
 	
 func _move_forward(delta):
 	var forward = ship_body.global_transform.basis.z.normalized();

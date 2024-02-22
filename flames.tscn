@@ -1,14 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdv66hah1ppsj"]
+[gd_scene load_steps=5 format=3 uid="uid://bdv66hah1ppsj"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1wt1"]
+[ext_resource type="Script" path="res://flames.gd" id="1_bs4cb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83m3q"]
+shading_mode = 0
+grow = true
+grow_amount = -0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc2wn"]
-next_pass = SubResource("StandardMaterial3D_i1wt1")
+next_pass = SubResource("StandardMaterial3D_83m3q")
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 1, 0.968627, 1)
+grow_amount = -0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_tulpy"]
 
 [node name="Flames" type="Node3D"]
+script = ExtResource("1_bs4cb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="FlameMesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_fc2wn")
 mesh = SubResource("SphereMesh_tulpy")
