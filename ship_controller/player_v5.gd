@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var ship_body : Node3D = $ShipBody;
 @onready var flames_left : Flames = $ShipBody/FlamesLeft;
 @onready var flames_right : Flames = $ShipBody/FlamesRight;
+@onready var engine_material : StandardMaterial3D = load("res://ship_controller/player.tscn::StandardMaterial3D_qr3b7");
 const BACKWARD_RATIO = 0.5;
 
 var speed = 0;
@@ -39,11 +40,15 @@ func _process(delta):
 		flames_right.flame_color = Color.DEEP_SKY_BLUE;
 		flames_left.speed_ratio = speed / max_speed;
 		flames_right.speed_ratio = speed / max_speed;
+		
+		engine_material.albedo_color = Color.DEEP_SKY_BLUE.darkened(1.0 - (speed / max_speed));
 	else:
 		flames_left.flame_color = Color.HOT_PINK;
 		flames_right.flame_color = Color.HOT_PINK;
 		flames_left.speed_ratio = speed / (-max_speed * BACKWARD_RATIO);
 		flames_right.speed_ratio = speed / (-max_speed * BACKWARD_RATIO);
+		
+		engine_material.albedo_color = Color.HOT_PINK.darkened(1.0 - (speed / (-max_speed * BACKWARD_RATIO)));
 	
 func _move_forward(delta):
 	var forward = ship_body.global_transform.basis.z.normalized();
