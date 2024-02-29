@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlrkkjhqsf6py"]
+
+[ext_resource type="Script" path="res://ship_controller/player_v5.gd" id="1_kt2hh"]
+[ext_resource type="ArrayMesh" uid="uid://cdf46y2llg0eg" path="res://ship_controller/ship3.obj" id="2_21tve"]
+[ext_resource type="PackedScene" uid="uid://chxlwkoma4fjy" path="res://ship_controller/flames.tscn" id="3_ply75"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v33p8"]
+radius = 1.5
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u8xhm"]
+emission_shape = 3
+emission_box_extents = Vector3(16, 8, 8)
+direction = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ages"]
+shading_mode = 0
+albedo_color = Color(0.654902, 0.654902, 0.654902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_40in5"]
+material = SubResource("StandardMaterial3D_7ages")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_kt2hh")
+
+[node name="ShipBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
+mesh = ExtResource("2_21tve")
+skeleton = NodePath("../..")
+
+[node name="FlamesRight" parent="ShipBody" instance=ExtResource("3_ply75")]
+transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, -1.5294, 0.828587, -9.40028)
+
+[node name="FlamesLeft" parent="ShipBody" instance=ExtResource("3_ply75")]
+transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, 1.529, 0.829, -9.4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_v33p8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, -6)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+amount = 48
+lifetime = 5.0
+visibility_aabb = AABB(-12, -8, -18, 24, 16, 24)
+process_material = SubResource("ParticleProcessMaterial_u8xhm")
+draw_pass_1 = SubResource("BoxMesh_40in5")

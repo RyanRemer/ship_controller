@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxcafevbx05qu"]
+[gd_scene load_steps=8 format=3 uid="uid://bxcafevbx05qu"]
 
 [ext_resource type="Shader" path="res://nebulas/nebula.gdshader" id="1_taw8x"]
-[ext_resource type="Script" path="res://ship_controller/player_v5.gd" id="1_ucs2b"]
 [ext_resource type="Texture2D" uid="uid://d4lpva5t8j5d0" path="res://nebulas/variants/nebua_11111113.png" id="2_71tbe"]
-[ext_resource type="ArrayMesh" uid="uid://cdf46y2llg0eg" path="res://ship_controller/ship3.obj" id="2_r6wn4"]
-[ext_resource type="PackedScene" uid="uid://chxlwkoma4fjy" path="res://ship_controller/flames.tscn" id="3_wcbkw"]
+[ext_resource type="PackedScene" uid="uid://dlrkkjhqsf6py" path="res://ship_controller/player.tscn" id="3_xn25q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qaueg"]
 shader = ExtResource("1_taw8x")
@@ -22,9 +20,6 @@ background_mode = 2
 background_color = Color(0.580392, 0.580392, 0.580392, 1)
 sky = SubResource("Sky_g2l3g")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_v33p8"]
-radius = 1.5
-
 [sub_resource type="BoxMesh" id="BoxMesh_c3ml8"]
 
 [node name="Main" type="Node3D"]
@@ -32,29 +27,11 @@ radius = 1.5
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hgngo")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-script = ExtResource("1_ucs2b")
-
-[node name="ShipBody" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
-mesh = ExtResource("2_r6wn4")
-skeleton = NodePath("../..")
-
-[node name="FlamesRight" parent="Player/ShipBody" instance=ExtResource("3_wcbkw")]
-transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, -1.5294, 0.828587, -9.40028)
-
-[node name="FlamesLeft" parent="Player/ShipBody" instance=ExtResource("3_wcbkw")]
-transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, 1.529, 0.829, -9.4)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("SphereShape3D_v33p8")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, -6)
-
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 35)
 mesh = SubResource("BoxMesh_c3ml8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.550801, 0.709129, -0.440176, 0, 0.527386, 0.849626, 0.834636, 0.467975, -0.290485, 0, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_xn25q")]
