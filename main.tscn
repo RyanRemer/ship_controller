@@ -1,8 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxcafevbx05qu"]
+[gd_scene load_steps=11 format=3 uid="uid://bxcafevbx05qu"]
 
+[ext_resource type="Shader" path="res://nebulas/nebula.gdshader" id="1_taw8x"]
 [ext_resource type="Script" path="res://ship_controller/player_v5.gd" id="1_ucs2b"]
+[ext_resource type="Texture2D" uid="uid://d4lpva5t8j5d0" path="res://nebulas/variants/nebua_11111113.png" id="2_71tbe"]
 [ext_resource type="ArrayMesh" uid="uid://cdf46y2llg0eg" path="res://ship_controller/ship3.obj" id="2_r6wn4"]
 [ext_resource type="PackedScene" uid="uid://chxlwkoma4fjy" path="res://ship_controller/flames.tscn" id="3_wcbkw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qaueg"]
+shader = ExtResource("1_taw8x")
+shader_parameter/x_tiles = 1.0
+shader_parameter/y_tiles = 2.0
+shader_parameter/pole_fading = 3.0
+shader_parameter/transparency = 1.0
+shader_parameter/nebula_image = ExtResource("2_71tbe")
+
+[sub_resource type="Sky" id="Sky_g2l3g"]
+sky_material = SubResource("ShaderMaterial_qaueg")
+
+[sub_resource type="Environment" id="Environment_hgngo"]
+background_mode = 2
+background_color = Color(0.580392, 0.580392, 0.580392, 1)
+sky = SubResource("Sky_g2l3g")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v33p8"]
 radius = 1.5
@@ -10,6 +28,9 @@ radius = 1.5
 [sub_resource type="BoxMesh" id="BoxMesh_c3ml8"]
 
 [node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hgngo")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("1_ucs2b")
