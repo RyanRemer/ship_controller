@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxcafevbx05qu"]
+[gd_scene load_steps=9 format=3 uid="uid://bxcafevbx05qu"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_pd2au"]
 [ext_resource type="Shader" path="res://nebulas/nebula.gdshader" id="1_taw8x"]
 [ext_resource type="Texture2D" uid="uid://d4lpva5t8j5d0" path="res://nebulas/variants/nebua_11111113.png" id="2_71tbe"]
 [ext_resource type="PackedScene" uid="uid://dlrkkjhqsf6py" path="res://ship_controller/player.tscn" id="3_xn25q"]
@@ -25,15 +26,18 @@ glow_intensity = 1.0
 [sub_resource type="BoxMesh" id="BoxMesh_c3ml8"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_pd2au")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hgngo")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 35)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 100)
 mesh = SubResource("BoxMesh_c3ml8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.550801, 0.709129, -0.440176, 0, 0.527386, 0.849626, 0.834636, 0.467975, -0.290485, 0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_xn25q")]
+enable_rotation = false
+enable_movement = false
