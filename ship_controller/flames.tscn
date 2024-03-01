@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://chxlwkoma4fjy"]
+[gd_scene load_steps=6 format=3 uid="uid://chxlwkoma4fjy"]
 
 [ext_resource type="Script" path="res://ship_controller/flames.gd" id="1_5r57x"]
 
@@ -10,11 +10,17 @@ grow_amount = -0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc2wn"]
 next_pass = SubResource("StandardMaterial3D_83m3q")
 cull_mode = 1
-shading_mode = 0
-albedo_color = Color(0, 1, 0.968627, 1)
+shading_mode = 2
+specular_mode = 2
+emission_enabled = true
+emission = Color(0, 0.917647, 1, 1)
+emission_energy_multiplier = 2.0
 grow_amount = -0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_tulpy"]
+
+[sub_resource type="Environment" id="Environment_htyxl"]
+glow_enabled = true
 
 [node name="Flames" type="Node3D"]
 script = ExtResource("1_5r57x")
@@ -22,3 +28,6 @@ script = ExtResource("1_5r57x")
 [node name="FlameMesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_fc2wn")
 mesh = SubResource("SphereMesh_tulpy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_htyxl")

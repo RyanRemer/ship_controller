@@ -20,6 +20,7 @@ background_mode = 2
 background_color = Color(0.580392, 0.580392, 0.580392, 1)
 sky = SubResource("Sky_g2l3g")
 glow_enabled = true
+glow_intensity = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_c3ml8"]
 
