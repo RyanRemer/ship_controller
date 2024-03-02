@@ -97,10 +97,10 @@ mesh = SubResource("ArrayMesh_f0aij")
 skeleton = NodePath("../..")
 
 [node name="FlamesRight" parent="ShipBody" instance=ExtResource("3_ply75")]
-transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, -1.5294, 0.828587, -9.40028)
+transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, -1.5294, 0.828587, -9.76624)
 
 [node name="FlamesLeft" parent="ShipBody" instance=ExtResource("3_ply75")]
-transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, 1.529, 0.829, -9.4)
+transform = Transform3D(1.17647, 0, 0, 0, 1.17647, 0, 0, 0, 1.17647, 1.529, 0.829, -9.76596)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_v33p8")
