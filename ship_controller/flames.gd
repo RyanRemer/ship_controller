@@ -4,6 +4,7 @@ class_name Flames extends Node3D
 @export var flame_color = Color.from_string("00fff7", Color.WHITE):
 	set(color):
 		flame_color = color;
+		flame_mesh.material_override.albedo_color = color;
 		flame_mesh.material_override.emission = flame_color;
 		
 @onready var flame_mesh = $FlameMesh;

@@ -1,7 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 
-# Ignore Nebulas Part
-nebulas/
-
-exports/
+# Ignore Imports from Other Projects
+nebulas/*
+overlay/*
+youtube/*
+exports/*
+asteroid/*
