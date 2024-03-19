@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://da3pshvm6rm8n"]
+
+[ext_resource type="PackedScene" uid="uid://df2twgr1xbl8g" path="res://ship_controller/player.tscn" id="1_5xr6l"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_3ko52"]
+mie_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_ps24t"]
+sky_material = SubResource("PhysicalSkyMaterial_3ko52")
+
+[sub_resource type="Environment" id="Environment_hsa4l"]
+background_mode = 2
+sky = SubResource("Sky_ps24t")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1y6vo"]
+size = Vector3(10, 10, 10)
+
+[node name="Example" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5xr6l")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hsa4l")
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+mesh = SubResource("BoxMesh_1y6vo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.70914, -0.619989, -0.335758, 0, -0.476207, 0.879333, -0.705068, -0.62357, -0.337698, 0, 0, 0)

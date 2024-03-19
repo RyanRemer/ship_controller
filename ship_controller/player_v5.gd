@@ -82,3 +82,5 @@ func _get_relative_mouse() -> Vector2:
 	
 	var size = max(viewport.size.x, viewport.size.y);
 	return mouse_direction / size;
+
+# Created by Ryan Remer

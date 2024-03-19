@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ship_controller"
-run/main_scene="res://youtube/main.tscn"
+run/main_scene="res://example.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
