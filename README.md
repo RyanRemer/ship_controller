@@ -8,3 +8,7 @@ See the LICENSE file for details on the license, or look at https://github.com/g
 Here is the YouTube video of me creating the component and giving a demo of what it could look like.
 
 [![Ship Controls YouTube Video](https://img.youtube.com/vi/z-Un3cVhhSs/0.jpg)](https://www.youtube.com/watch?v=z-Un3cVhhSs)
+
+## Support
+The best way to support me is to keep me inspired. Small comments make my day, and I like seeing projects with many downloads. Thanks for stopping by!
+https://ryanremer.itch.io/godot-ship-controller
